@@ -1690,7 +1690,7 @@ static size_t config_find_entry(Config *config, const char16_t *pattern) {
                 return IDX_INVALID;
 
         for (size_t i = 0; i < config->n_entries; i++)
-                if (efi_fnmatch(pattern, config->entries[i]->id))
+                if (efi_fnmatch(pattern, config->entries[i]->id) && config->entries[i]->tries_left != 0)
                         return i;
 
         return IDX_INVALID;
